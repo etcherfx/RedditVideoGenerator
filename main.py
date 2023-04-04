@@ -1,9 +1,33 @@
+import json
+import random
+import subprocess
+import time
+
 from moviepy.editor import *
-import reddit, screenshot, time, subprocess, random, configparser, sys, math
+
+import reddit
+import screenshot
+
+file_cfg: str = "config.json"
+config: dict = {}
+
+if os.path.exists(file_cfg):
+    with open(file_cfg) as c:
+        config = json.loads(c.read())
+    c.close()
+
+directories = [config["General"]["OutputDirectory"],
+               config["General"]["BackgroundDirectory"],
+               config["General"]["VoiceoverDirectory"],
+               config["Screenshots"]["Directory"]
+               ]
+
+for directory in directories:
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+
 
 def createVideo():
-    config = configparser.ConfigParser()
-    config.read('config.ini')
     outputDir = config["General"]["OutputDirectory"]
 
     startTime = time.time()
@@ -13,7 +37,7 @@ def createVideo():
     if (len(sys.argv) == 2):
         script = reddit.getContentFromId(outputDir, sys.argv[1])
     else:
-        postOptionCount = int(config["Reddit"]["NumberOfPostsToSelectFrom"])
+        postOptionCount = config["Reddit"]["NumberOfPostsToSelectFrom"]
         script = reddit.getContent(outputDir, postOptionCount)
     fileName = script.getFileName()
 
@@ -25,17 +49,16 @@ def createVideo():
     bgPrefix = config["General"]["BackgroundFilePrefix"]
     bgCount = int(config["General"]["BackgroundVideos"])
     bgIndex = random.randint(0, bgCount-1)
-    backgroundVideo = VideoFileClip(
-        filename=f"{bgDir}/{bgPrefix}{bgIndex}.mp4", 
-        audio=False).subclip(0, script.getDuration())
+    backgroundVideo = VideoFileClip(filename=f"{bgDir}/{bgPrefix}{bgIndex}.mp4", audio=False).subclip(0,
+                                                                                                      script.getDuration())
     w, h = backgroundVideo.size
 
     def __createClip(screenShotFile, audioClip, marginSize):
         imageClip = ImageClip(
             screenShotFile,
             duration=audioClip.duration
-            ).set_position(("center", "center"))
-        imageClip = imageClip.resize(width=(w-marginSize))
+        ).set_position(("center", "center"))
+        imageClip = imageClip.resize(width=(w - marginSize))
         videoClip = imageClip.set_audio(audioClip)
         videoClip.fps = 1
         return videoClip
@@ -53,7 +76,7 @@ def createVideo():
 
     # Compose background/foreground
     final = CompositeVideoClip(
-        clips=[backgroundVideo, contentOverlay], 
+        clips=[backgroundVideo, contentOverlay],
         size=backgroundVideo.size).set_audio(contentOverlay.audio)
     final.duration = script.getDuration()
     final.set_fps(backgroundVideo.fps)
@@ -64,15 +87,15 @@ def createVideo():
     threads = config["Video"]["Threads"]
     outputFile = f"{outputDir}/{fileName}.mp4"
     final.write_videofile(
-        outputFile, 
-        codec = 'mpeg4',
-        threads = threads, 
-        bitrate = bitrate
+        outputFile,
+        codec='mpeg4',
+        threads=threads,
+        bitrate=bitrate
     )
     print(f"Video completed in {time.time() - startTime}")
 
     # Preview in VLC for approval before uploading
-    if (config["General"].getboolean("PreviewBeforeUpload")):
+    if (config["General"]["PreviewBeforeUpload"]):
         vlcPath = config["General"]["VLCPath"]
         p = subprocess.Popen([vlcPath, outputFile])
         print("Waiting for video review. Type anything to continue")
@@ -82,6 +105,7 @@ def createVideo():
     print(f"Title: {script.title}  File: {outputFile}")
     endTime = time.time()
     print(f"Total time: {endTime - startTime}")
+
 
 if __name__ == "__main__":
     createVideo()
