@@ -8,13 +8,13 @@ from moviepy.editor import *
 import reddit
 import screenshot
 
-file_cfg: str = "config.json"
-config: dict = {}
-
-if os.path.exists(file_cfg):
-    with open(file_cfg) as c:
-        config = json.loads(c.read())
+if os.path.exists("config.json"):
+    with open("config.json") as c:
+        config = json.load(c)
     c.close()
+else:
+    print("Config file not found. Exiting...")
+    exit(1)
 
 directories = [config["General"]["OutputDirectory"],
                config["General"]["BackgroundDirectory"],
@@ -48,7 +48,7 @@ def createVideo():
     bgDir = config["General"]["BackgroundDirectory"]
     bgPrefix = config["General"]["BackgroundFilePrefix"]
     bgCount = int(config["General"]["BackgroundVideos"])
-    bgIndex = random.randint(0, bgCount-1)
+    bgIndex = random.randint(0, bgCount - 1)
     backgroundVideo = VideoFileClip(filename=f"{bgDir}/{bgPrefix}{bgIndex}.mp4", audio=False).subclip(0,
                                                                                                       script.getDuration())
     w, h = backgroundVideo.size
