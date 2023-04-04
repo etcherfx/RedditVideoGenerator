@@ -1,12 +1,17 @@
+import os
+import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
-# Config
-screenshotDir = "Screenshots"
-screenWidth = 400
-screenHeight = 800
+with open("config.json") as c:
+    config = json.load(c)
+    screenshotDir = config["Screenshots"]["Directory"]
+    screenWidth = config["Screenshots"]["Width"]
+    screenHeight = config["Screenshots"]["Height"]
+c.close()
+
 
 def getPostScreenshots(filePrefix, script):
     print("Taking screenshots...")
@@ -15,6 +20,7 @@ def getPostScreenshots(filePrefix, script):
     for commentFrame in script.frames:
         commentFrame.screenShotFile = __takeScreenshot(filePrefix, driver, wait, f"t1_{commentFrame.commentId}")
     driver.quit()
+
 
 def __takeScreenshot(filePrefix, driver, wait, handle="Post"):
     method = By.CLASS_NAME if (handle == "Post") else By.ID
@@ -26,6 +32,7 @@ def __takeScreenshot(filePrefix, driver, wait, handle="Post"):
     fp.write(search.screenshot_as_png)
     fp.close()
     return fileName
+
 
 def __setupDriver(url: str):
     options = webdriver.FirefoxOptions()
