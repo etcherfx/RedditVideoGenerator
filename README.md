@@ -1,16 +1,35 @@
-# Reddit Video Generator
+<div align ="center">
 
-*This project is further explained in [this video](https://youtu.be/ZmSb3LZDdf0)*
+<img src="projectInfo/icon.png" width="180">
 
-*This code is meant only for educational reference and will not be maintained*
+# RedditVideoGenerator
 
----
-This program generates a .mp4 video automatically by querying the top post on the
-r/askreddit subreddit, and grabbing several comments. To use this program:
-- [ ] Install dependencies
-- [ ] Register with Reddit to create and API application [here](https://www.reddit.com/prefs/apps/)
-- [ ] Use the credentials from the previous step to update reddit.py line 46-51
-- [ ] Make a copy of config.example.ini and rename to config.ini
+<h3>A program that generates a .mp4 video automatically by querying a post on a subreddit and grabbing several comments. </h3>
 
-Now, you can run `python main.py` to be prompted for which post to choose. Alternatively,
-you can run `python main.py <reddit-post-id>` to create a video for a specific post.
+</div>
+
+## Links
+
+- [Releases](https://github.com/etcherfx/RedditVideoGenerator/releases)
+
+## Projects Used
+
+- [RedditVideoGenerator](https://github.com/Shifty-The-Dev/RedditVideoGenerator)
+
+## Usage
+
+- Install dependencies:
+  ```
+  pip install -r requirements.txt
+  ```
+- Register with Reddit to create and API application [here](https://www.reddit.com/prefs/apps/)
+- Use the credentials from the previous step to update `config/defaultConfig.json` lines 20-22
+- Rename `defaultConfig.json` to `config.json`
+- Start the application:
+  ```
+  python main.py
+  ```
+- Alternatively you can run this command to create a video for a specific post:
+  ```
+  python main.py <reddit-post-id>
+  ```
