@@ -2,7 +2,6 @@
 # an idea for how to leverage YouTubeUploader to automate this step
 
 
-
 # from youtube_uploader_selenium import YouTubeUploader
 # import json
 

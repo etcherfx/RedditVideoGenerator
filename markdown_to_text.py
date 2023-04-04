@@ -1,6 +1,8 @@
+import re
+
 from bs4 import BeautifulSoup
 from markdown import markdown
-import re
+
 
 def markdown_to_text(markdown_string):
     """ Converts a markdown string to plaintext """

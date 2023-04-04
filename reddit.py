@@ -1,10 +1,11 @@
 import json
-import markdown_to_text
 import os
-import praw
 import re
 import time
 
+import praw
+
+import markdown_to_text
 from videoscript import VideoScript
 
 with open("config.json") as c:
@@ -61,7 +62,7 @@ if not __name__ == "__main__":
 
     def __getReddit():
         return praw.Reddit(
-            client_id= clientID,
+            client_id=clientID,
             client_secret=clientSecret,
             user_agent=userAgent
         )

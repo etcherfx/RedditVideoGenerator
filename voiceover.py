@@ -1,6 +1,6 @@
 import json
-import pyttsx3
 
+import pyttsx3
 
 with open("config.json") as c:
     config = json.load(c)
