@@ -1,6 +1,12 @@
+import json
 import pyttsx3
 
-voiceoverDir = "Voiceovers"
+
+with open("config.json") as c:
+    config = json.load(c)
+    voiceoverDir = config["General"]["VoiceoverDirectory"]
+c.close()
+
 
 def create_voice_over(fileName, text):
     filePath = f"{voiceoverDir}/{fileName}.mp3"
