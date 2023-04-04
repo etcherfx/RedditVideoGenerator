@@ -3,10 +3,10 @@
     "PreviewBeforeUpload": true,
     "VLCPath": "C:/Program Files/VideoLAN/VLC/vlc.exe",
     "OutputDirectory": "OutputVideos",
-    "BackgroundDirectory": "BackgroundVideos",
+    "BackgroundDirectory": "generation/BackgroundVideos",
     "BackgroundFilePrefix": "Short_",
     "BackgroundVideos": 8,
-    "VoiceoverDirectory": "Voiceovers"
+    "VoiceoverDirectory": "generation/Voiceovers"
   },
   "Video": {
     "MarginSize": 64,
@@ -22,7 +22,7 @@
     "UserAgent": "Your user agent"
   },
   "Screenshots": {
-    "Directory": "Screenshots",
+    "Directory": "generation/Screenshots",
     "Width": 400,
     "Height": 800
   }
