@@ -9,4 +9,6 @@ metadata.json
 pyvenv.cfg
 client_secrets.json
 geckodriver.log
-config.ini
+config.json
+.idea
+venv
