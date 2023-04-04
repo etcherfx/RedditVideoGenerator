@@ -1,0 +1,29 @@
+{
+  "General": {
+    "PreviewBeforeUpload": true,
+    "VLCPath": "C:/Program Files/VideoLAN/VLC/vlc.exe",
+    "OutputDirectory": "OutputVideos",
+    "BackgroundDirectory": "BackgroundVideos",
+    "BackgroundFilePrefix": "Short_",
+    "BackgroundVideos": 8,
+    "VoiceoverDirectory": "Voiceovers"
+  },
+  "Video": {
+    "MarginSize": 64,
+    "Bitrate": "8000k",
+    "Threads": 12
+  },
+  "Reddit": {
+    "URL": "https://www.reddit.com/",
+    "NumberOfPostsToSelectFrom": 4,
+    "Subreddit": "askreddit",
+    "ClientID": "YOUR_CLIENT_ID",
+    "ClientSecret": "YOUR_CLIENT_SECRET",
+    "UserAgent": "Your user agent"
+  },
+  "Screenshots": {
+    "Directory": "Screenshots",
+    "Width": 400,
+    "Height": 800
+  }
+}

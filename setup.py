@@ -7,14 +7,16 @@ configFilePath = os.path.join(configDir, configFile)
 
 if not os.path.exists(configDir):
     os.makedirs(configDir)
+
+'''
 if not os.path.exists(configFilePath):
-    preview_before_upload = input("Preview before upload (True/False): ").lower() == "true"
-    vlc_path = input("VLC path: ")
-    output_directory = input("Output directory: ")
-    background_directory = input("Background directory: ")
-    voiceover_directory = input("Voiceover directory: ")
-    background_file_prefix = input("Background file prefix: ")
-    background_videos = int(input("Number of background videos: "))
+    preview_before_upload = (input("Preview before upload (True/False): ").lower() == "true") or True
+    vlc_path = input("VLC path: ") or "C:/Program Files/VideoLAN/VLC/vlc.exe"
+    output_directory = input("Output video directory: ") or "OutputVideos"
+    background_directory = input("Background video directory: ") or "BackgroundVideos"
+    voiceover_directory = input("Voiceover directory: ") or "Voiceovers"
+    background_file_prefix = input("Background file prefix: ") or "Short_"
+    background_videos = int(input("Number of background videos: ")) or 8
     margin_size = int(input("Margin size: "))
     bitrate = input("Bitrate: ")
     threads = int(input("Number of threads: "))
@@ -60,3 +62,4 @@ if not os.path.exists(configFilePath):
 
     with open(configFilePath, "w") as c:
         json.dump(config, c, indent=2)
+'''
