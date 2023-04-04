@@ -7,9 +7,10 @@ from moviepy.editor import *
 
 import reddit
 import screenshot
+from setup import configFilePath
 
-if os.path.exists("config.json"):
-    with open("config.json") as c:
+if os.path.exists(configFilePath):
+    with open(configFilePath) as c:
         config = json.load(c)
     c.close()
 else:

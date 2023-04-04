@@ -2,7 +2,9 @@ import json
 
 import pyttsx3
 
-with open("config.json") as c:
+from setup import configFilePath
+
+with open(configFilePath) as c:
     config = json.load(c)
     voiceoverDir = config["General"]["VoiceoverDirectory"]
 c.close()

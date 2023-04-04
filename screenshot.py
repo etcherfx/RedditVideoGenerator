@@ -5,7 +5,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-with open("config.json") as c:
+from setup import configFilePath
+
+with open(configFilePath) as c:
     config = json.load(c)
     screenshotDir = config["Screenshots"]["Directory"]
     screenWidth = config["Screenshots"]["Width"]

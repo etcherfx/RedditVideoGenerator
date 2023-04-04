@@ -6,9 +6,10 @@ import time
 import praw
 
 import markdown_to_text
+from setup import configFilePath
 from videoscript import VideoScript
 
-with open("config.json") as c:
+with open(configFilePath) as c:
     config = json.load(c)
     subReddit = config["Reddit"]["Subreddit"]
     clientID = config["Reddit"]["ClientID"]
