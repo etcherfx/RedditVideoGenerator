@@ -48,7 +48,7 @@ def createVideo():
     bgDir = config["General"]["BackgroundDirectory"]
     bgPrefix = config["General"]["BackgroundFilePrefix"]
     bgCount = int(config["General"]["BackgroundVideos"])
-    bgIndex = random.randint(0, bgCount - 1)
+    bgIndex = random.randint(1, bgCount)
     backgroundVideo = VideoFileClip(filename=f"{bgDir}/{bgPrefix}{bgIndex}.mp4", audio=False).subclip(0,
                                                                                                       script.getDuration())
     w, h = backgroundVideo.size
