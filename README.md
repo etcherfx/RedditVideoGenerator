@@ -4,7 +4,7 @@
 
 # RedditVideoGenerator
 
-<h3>A program that generates a .mp4 video automatically by querying a post on a subreddit and grabbing several comments. </h3>
+<span style="font-size:18px;">A program that generates a .mp4 video automatically by querying a post on a subreddit and grabbing several comments. </span>
 
 </div>
 
